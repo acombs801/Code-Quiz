@@ -1,0 +1,35 @@
+.wrapper{
+    background-color: rgb(2, 155, 202);
+}
+.timer{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-decoration: underline black;
+}
+.time{
+    color: darkred;
+}
+.startQ{
+    text-align: center;
+}
+button{
+   color: rgb(153, 38, 3);
+   background-color: rgb(120, 119, 121);
+   box-shadow: fuchsia 2px;
+   box-sizing: content-box;
+   text-decoration: underline fuchsia ;
+} 
+.qbox{
+    background-color: dimgray;
+}
+.answers{
+
+}
+
+.highscore{
+    color: rgb(187, 45, 2);
+    text-decoration: underline black;
+}
+h1{
+    text-align: center;
+}
