@@ -100,3 +100,60 @@ function timer() {
     }, 1000);
 }
 
+
+function displayQuestion(questionCount){
+    if (questionCount === questions.length) {
+        return showScore();
+    } else {
+        var questionEl = document.createElement('h2');
+        qBox.appendChild(questionEl);
+        questionEl.textContent = questions[questionCount].q;
+
+        for(var i = 0; i < questions[questionCount].a.length; i++){
+            var buttonEl = document.createElement('button');
+            answers.appendChild(buttonEl);
+            buttonEl.textContent = questions[questionCount].a[i];   
+        }
+    }
+    
+};
+
+function showScore(){
+    score += timeLeft;
+
+    var scoreSheet = document.createElement('p');
+    qBox.appendChild(scoreSheet);
+    scoreSheet.innerHTML =  'All done! You finished with a score of <span>' + score + '</span>.';
+
+    var enterInitials = document.createElement('h3');
+    enterInitials.setAttribute('id', 'enterInitials');
+    qBox.appendChild(enterInitials);
+    enterInitials.textContent = 'Type your initials and see how you rank among your peers!';
+
+    var textBox = document.createElement('input');
+    textBox.setAttribute('type', 'text');
+    textBox.setAttribute('id', 'initials');
+    textBox.textContent = '';
+    qBox.appendChild(textBox);
+
+    var endScore = document.createElement('button');
+    endScore.setAttribute('type', 'submit');
+    endScore.setAttribute('id', 'submitScore');
+    endScore.textContent = 'Submit Score';
+    qBox.appendChild(endScore);
+
+    endScore.addEventListener('click', function(){
+        var initials = textBox.value;
+        var scoreRecord = {
+            name : initials,
+            score : score
+        };
+
+         console.log(scoreRecord);
+
+        localStorage.setItem('name', 'score');
+        localStorage.setItem("score", scoreRecord.score);
+
+    
+        })
+};
