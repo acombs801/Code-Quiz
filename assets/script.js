@@ -1,19 +1,13 @@
-
-
-
-// if question answered incorrectly time is lost
-// When all questions are answered timer stops 
-// When timer stops game asks you to save initials
-// Saves initials and score to local storage 
 var start= document.querySelector("#startquiz");
-var qBox= document.querySelector("#questions");
 var timerE1= document.querySelector("#timer");
+var qBox= document.querySelector("#questions");
 var answers= document.querySelector("#answers");
 
 var questionCount = 0;
 var timeLeft= 40;
 var score= 0;
 var correctAnswer;
+
 var questions = [
     {
         q: "What is the type of loop that continues through a block of code as long as the specified condition remains TRUE?",
@@ -46,7 +40,7 @@ var questions = [
     {
         q: "Is JavaScript a front-end, back-end, or full-stack programming language?",
 
-        a: ['Front-end', 'Back-end','Full-stack'],
+        a: ['Front-end', 'Back-end','Full-Stack'],
 
         correct: "Full-Stack",
     }]
@@ -59,17 +53,20 @@ start.addEventListener('click', function(){
     timer();
 });
 
-// Waits for 'on click' event on an answer then decides if its correct or not, points
+// Waits for 'on click' event on an answer then decides if its correct or not, points reduced by 4
 
 answers.addEventListener('click', function(event){
     var element = event.target;
     if(element.matches('button')){
 
         if(element.textContent == questions[questionCount].correct){
-            score+=5;
-        } else{
-            score-=0;
-            timeLeft-=5;
+            score+= 8;
+        
+        } else{  
+            
+            // if question answered incorrectly no points gained and time is lost    
+            score-= 4;
+            timeLeft-= 5;
         }
     } 
     console.log(score);
@@ -88,7 +85,7 @@ function timer() {
             if(timeLeft > 0){
                 clearInterval(timerInterval);
                timerE1.innerHTML = '';
-            }
+            }// When all questions are answered timer stops 
         }else if (timeLeft <= 0){
                 clearInterval(timerInterval);
             timerE1.innerHTML = 'Times up!';
@@ -117,7 +114,7 @@ function displayQuestion(questionCount){
     }
     
 };
-
+// When timer stops game shows score and asks you to save initials
 function showScore(){
     score += timeLeft;
 
@@ -151,6 +148,7 @@ function showScore(){
 
          console.log(scoreRecord);
 
+        // Saves initials and score to local storage 
         localStorage.setItem('name', 'score');
         localStorage.setItem("score", scoreRecord.score);
 
