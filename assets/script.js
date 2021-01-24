@@ -1,22 +1,19 @@
-// Clicking 'Start Quiz' shows the first question and starts Timer.
-// Use event listener on click to start function to show question and start timer
-// When question is answered next question is shown 
-// Shows whether Q was answered correctly or not + time lost
+
+
+
 // if question answered incorrectly time is lost
 // When all questions are answered timer stops 
 // When timer stops game asks you to save initials
 // Saves initials and score to local storage 
-// Use 'viewHighscore' to see saved scores
+var start= document.querySelector("#startquiz");
+var qBox= document.querySelector("#questions");
+var timerE1= document.querySelector("#timer");
+var answers= document.querySelector("#answers");
 
-var viewHighscore= document.querySelector("#highscore");
-var start= document.getElementById(".start")
-var timeE1= document.getElementById(".timer")
-console.log(start);
-var answers= document.querySelector("#answers")
-
+var questionCount = 0;
 var timeLeft= 40;
 var score= 0;
-
+var correctAnswer;
 var questions = [
     {
         q: "What is the type of loop that continues through a block of code as long as the specified condition remains TRUE?",
@@ -44,27 +41,62 @@ var questions = [
         
         a: ['Output', 'Syntax', 'JSON', 'Scope'],
         
-        correct: "Syntax"
+        correct: "Syntax",
     },
+    {
+        q: "Is JavaScript a front-end, back-end, or full-stack programming language?",
 
-];
+        a: ['Front-end', 'Back-end','Full-stack'],
 
-$(document).ready(function(){
-    $("start").on("click", setTime, quizShow) 
+        correct: "Full-Stack",
+    }]
 
-        function quizShow(){
-             
-            while(questions.length) {
-               
-                var index = Math.floor( Math.random()* questions.length );
-                 questions.splice( index, 1 ); 
-                console.log(index);
-    
-                            };
-                        }
+// Clicking 'Start Quiz' shows the first question and starts Timer.
 
-})
+start.addEventListener('click', function(){
+    start.setAttribute('style', 'display: none;');
+    displayQuestion(0);
+    timer();
+});
 
+// Waits for 'on click' event on an answer then decides if its correct or not, points
 
+answers.addEventListener('click', function(event){
+    var element = event.target;
+    if(element.matches('button')){
 
+        if(element.textContent == questions[questionCount].correct){
+            score+=5;
+        } else{
+            score-=0;
+            timeLeft-=5;
+        }
+    } 
+    console.log(score);
+    questionCount++;
+    qBox.innerHTML = '';
+    answers.innerHTML = '';
+    displayQuestion(questionCount);
+});
+
+function timer() {
+    var timerInterval = setInterval(function(){
+        timeLeft--;
+         timerE1.innerHTML= 'Time left: <span>' + timeLeft + '</span> seconds';
+
+        if(questionCount === questions.length){
+            if(timeLeft > 0){
+                clearInterval(timerInterval);
+               timerE1.innerHTML = '';
+            }
+        }else if (timeLeft <= 0){
+                clearInterval(timerInterval);
+            timerE1.innerHTML = 'Times up!';
+        
+           showScore();
+        
+        }
+        
+    }, 1000);
+}
 
