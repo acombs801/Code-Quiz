@@ -1,35 +1,37 @@
-.wrapper{
-    background-color: rgb(2, 155, 202);
-}
 .timer{
     text-align: center;
     color: rgb(0, 0, 0);
-    text-decoration: underline black;
 }
-.time{
+.seconds{
     color: darkred;
 }
 .startQ{
     text-align: center;
 }
 button{
-   color: rgb(153, 38, 3);
-   background-color: rgb(120, 119, 121);
-   box-shadow: fuchsia 2px;
-   box-sizing: content-box;
-   text-decoration: underline fuchsia ;
+   color: rgb(38, 128, 16);
+   text-decoration:solid underline rgb(160, 6, 6) ;
+   padding: 15px;
+   border: 10px rgb(0, 0, 0) double;
+   
 } 
-.qbox{
-    background-color: dimgray;
-}
-.answers{
 
-}
-
-.highscore{
-    color: rgb(187, 45, 2);
-    text-decoration: underline black;
-}
 h1{
     text-align: center;
+    color: rgb(78, 20, 220);
+}
+h2{
+    color: rgb(15, 183, 189);
+}
+
+h3{
+    color: rgb(187, 45, 2);
+}
+
+h4{
+    text-align: center;
+}
+p{
+    color: green;
+    font-size: 40px;
 }
